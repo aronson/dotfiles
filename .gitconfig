@@ -8,3 +8,5 @@
 	pager = less
 [color]
 	ui = true
+[push]
+	default = simple
