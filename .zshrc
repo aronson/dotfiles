@@ -10,7 +10,7 @@ setopt APPEND_HISTORY
 unsetopt BG_NICE		# do NOT nice bg commands
 setopt CORRECT			# command CORRECTION
 setopt EXTENDED_HISTORY		# puts timestamps in the history
-# setopt HASH_CMDS		# turns on hashing
+setopt HASH_CMDS		# turns on hashing
 #
 setopt MENUCOMPLETE
 setopt ALL_EXPORT
@@ -61,24 +61,28 @@ else
     PS1="$PR_LIGHT_GREEN$PROMPTHOST$PR_BLUE%2c $PR_GREEN%(!.#.$) "
 fi
 
-if [[ $(acpi 2&>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]] ; then
-  function battery_pct_remaining() { echo "$(acpi | cut -f2 -d ',' | tr -cd '[:digit:]')" }
-  function battery_time_remaining() { echo $(acpi | cut -f3 -d ',') }
-  function battery_pct_prompt() {
-    b=$(battery_pct_remaining)
-    if [ $b -gt 50 ] ; then
-      color='green'
-    elif [ $b -gt 20 ] ; then
-      color='yellow'
-    else
-      color='red'
-    fi
-    echo "%{$fg[$color]%}$(battery_pct_remaining)%%%{$reset_color%}"
-  }
-  RPS1="$PR_YELLOW(%D{%m/%d %I:%M %P} $(battery_pct_remaining)$PR_YELLOW)$PR_NO_COLOR"
-else
+#This is broken for now
+#if [[ $(acpi 2&>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]] ; then
+#  function battery_pct_remaining() { echo "$(acpi | cut -f2 -d ',' | tr -cd '[:digit:]')" }
+#  function battery_time_remaining() { echo $(acpi | cut -f3 -d ',') }
+#  function battery_pct_prompt() {
+#    b=$(battery_pct_remaining)
+#    if [ $b -gt 50 ] ; then
+#      color='green'
+#    elif [ $b -gt 20 ] ; then
+#      color='yellow'
+#    else
+#      color='red'
+#    fi
+#    echo "%{$fg[$color]%}$(battery_pct_remaining)%%%{$reset_color%}"
+#  }
+#  RPS1="$PR_YELLOW(%D{%m/%d %I:%M %P} $(battery_pct_remaining)$PR_YELLOW)$PR_NO_COLOR"
+#else
   RPS1="$PR_YELLOW(%D{%m/%d %I:%M %P})$PR_NO_COLOR"
-fi
+#fi
+
+#tests if we have a binary or no
+have() { which $1 &>/dev/null || return 1 }
 
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
@@ -94,7 +98,7 @@ fi
 
 unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
-# # aliases
+# # aliases and custom commands
 # # --------------------------------------------------------------------
 
 alias slrn="slrn -n"
@@ -105,43 +109,23 @@ alias ls='ls --color=auto '
 alias offlineimap-tty='offlineimap -u TTY.TTYUI'
 alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
-alias pacman='sudo pacman'
-alias yup='yaourt -Syua --noconfirm'
-alias pingas='mosh isaac@pingas.org'
+have pacman && alias pacman='sudo pacman'
+have yaourt && alias yup='yaourt -Syua --noconfirm'
+have mosh && alias pingas='mosh isaac@pingas.org' || alias pingas='ssh isaac@pingas.org'
 alias ipa='ip a'
 alias gl='ssh -C aronson1@gl.umbc.edu'
-alias sctl="systemctl"
+have systemctl && alias sctl="systemctl"
 alias sus="systemctl --user"
+have ix || alias ix="curl -F 'f:1=<-' ix.io" 
 #if [[ $HOSTNAME == "kamna" ]] {
 #	alias emacs='emacs -l ~/.emacs.kamna'
 #}	
 
 # alias	=clear
 
-#chpwd() {
-#     [[ -t 1 ]] || return
-#     case $TERM in
-#     sun-cmd) print -Pn "\e]l%~\e\\"
-#     ;;
-#    *xterm*|screen|rxvt|(dt|k|E)term) print -Pn "\e]2;%~\a"
-#    ;;
-#    esac
-#}
-selfupdate(){
-        URL="http://stuff.mit.edu/~jdong/misc/zshrc"
-        echo "Updating zshrc from $URL..."
-        echo "Press Ctrl+C within 5 seconds to abort..."
-        sleep 5
-        cp ~/.zshrc ~/.zshrc.old
-        wget $URL -O ~/.zshrc
-        echo "Done; existing .zshrc saved as .zshrc.old"
-}
-#chpwd
-
 autoload -U compinit
 compinit
 # Custom confdefs go here
-compdef _pacman pacman-color=pacman
 compdef _systemctl sctl=systemctl
 compdef _systemctl sus=systemctl
 # End custom confdefs
@@ -235,4 +219,3 @@ export WINEPREFIX=~/.wine
 export WINEARCH=win32
 bindkey -e
 setopt AUTO_CD
-
