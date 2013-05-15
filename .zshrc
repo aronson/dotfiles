@@ -111,7 +111,9 @@ alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
 have pacman && alias pacman='sudo pacman'
 have yaourt && alias yup='yaourt -Syua --noconfirm'
-have mosh && alias pingas='mosh isaac@pingas.org' || alias pingas='ssh isaac@pingas.org'
+#disabling until VTE bug is fixed
+#have mosh && alias pingas='mosh isaac@pingas.org' || alias pingas='ssh isaac@pingas.org'
+alias pingas='ssh isaac@pingas.org'
 alias ipa='ip a'
 alias gl='ssh -C aronson1@gl.umbc.edu'
 have systemctl && alias sctl="systemctl"
