@@ -49,8 +49,7 @@ EDITOR='vim'
     PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 #Check if we are running over ssh and append hostname if we are
-if [ "x$SSH_CONNECTION" = "x" ]; then
-else
+if [ -n "$SSH_CONNECTION" ]; then
     PROMPTHOST="$HOSTNAME "
 fi
 
