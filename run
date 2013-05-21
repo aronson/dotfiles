@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+require "generators"
+
+limit = Integer(ARGV.shift)
+
+STDOUT.sync = true
+
+gen = Marshal.load(ARGF)
+limit.times { puts gen.next; puts }
