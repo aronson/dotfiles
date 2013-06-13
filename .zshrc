@@ -1,5 +1,5 @@
 # next lets set some enviromental/shell pref stuff up
-# setopt NOHUP
+setopt NOHUP            # let backgrounded commands continue
 #setopt NOTIFY
 #setopt NO_FLOW_CONTROL
 setopt INC_APPEND_HISTORY SHARE_HISTORY
