@@ -1,5 +1,6 @@
 # next lets set some enviromental/shell pref stuff up
 setopt NOHUP            # let backgrounded commands continue
+setopt CSH_NULL_GLOB    # if any glob matches, use onlt those globs, but error on no globs
 #setopt NOTIFY
 #setopt NO_FLOW_CONTROL
 setopt INC_APPEND_HISTORY SHARE_HISTORY
