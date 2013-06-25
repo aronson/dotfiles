@@ -154,6 +154,19 @@ zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %
 # list of completers to use
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 
+# colorize partial completions
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==1;31=0;00}:${(s.:.)LS_COLORS}")';
+
+# fix incorrect prefix set
+unambigandmenu() {
+    zle expand-or-complete
+    zle magic-space
+    zle backward-delete-char
+    zle expand-or-complete
+}
+zle -N unambigandmenu
+bindkey "^i" unambigandmenu
+
 # allow one error for every three characters typed in approximate completer
 zstyle -e ':completion:*:approximate:*' max-errors \
     'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
