@@ -30,7 +30,7 @@ zmodload -a zsh/zprof zprof
 zmodload -ap zsh/mapfile mapfile &>/dev/null
 
 
-PATH="/opt/bro/bin:/opt/metasploit:/usr/lib/icecream/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
+PATH="/opt/android-sdk/platform-tools:/opt/bro/bin:/opt/metasploit:/usr/lib/icecream/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
 TZ="America/New_York"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
