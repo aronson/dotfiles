@@ -1,6 +1,6 @@
 [user]
 	name = Isaac C. Aronson
-	email = i@pingas.org
+	email = isaac@linux.com
 [credential]
 	helper = cache --timeout=3600
 [core]
