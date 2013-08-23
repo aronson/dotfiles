@@ -15,6 +15,7 @@ setopt HASH_CMDS		# turns on hashing
 #
 setopt MENUCOMPLETE
 setopt ALL_EXPORT
+setopt transientrprompt
 
 # Set/unset  shell options
 setopt   notify globdots correct pushdtohome cdablevars autolist
@@ -49,6 +50,12 @@ EDITOR='vim'
     done
     PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
+
+# Adapted from code found at <https://gist.github.com/1712320>.
+ 
+setopt prompt_subst
+autoload -U colors && colors # Enable colors in prompt
+
 #Check if we are running over ssh and append hostname if we are
 if [ -n "$SSH_CONNECTION" ]; then
     PROMPTHOST="$HOSTNAME "
@@ -78,7 +85,8 @@ fi
 #  }
 #  RPS1="$PR_YELLOW(%D{%m/%d %I:%M %P} $(battery_pct_remaining)$PR_YELLOW)$PR_NO_COLOR"
 #else
-  RPS1="$PR_YELLOW(%D{%m/%d %I:%M %P})$PR_NO_COLOR"
+  source ~/.zsh/git_prompt.zsh
+  RPS1="$RPS1 $PR_YELLOW(%D{%m/%d %I:%M %P})$PR_NO_COLOR"
 #fi
 
 #tests if we have a binary or no
