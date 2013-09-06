@@ -6,6 +6,7 @@
 [core]
 	editor = vim
 	pager = less
+	autocrlf = true
 [color]
 	ui = true
 [push]
