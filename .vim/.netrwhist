@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/usr/share/application-registry'
 let g:netrw_dirhist_2='/home/isaac/.config/mpDris2'
 let g:netrw_dirhist_3='/home/isaac/Builds/test'
 let g:netrw_dirhist_4='/home/isaac/Builds'
 let g:netrw_dirhist_5='/home/isaac/Builds/parser'
 let g:netrw_dirhist_6='/var/abs/extra/syslog-ng'
+let g:netrw_dirhist_7='/home/isaac/Builds/elsa/dashboard-ng/widgets'
