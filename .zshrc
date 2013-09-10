@@ -39,7 +39,8 @@ HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
 HOSTNAME="`hostname`"
-have vimpager && PAGER='vimpager' || PAGER='less'
+have vimpager && PAGER='vimpager' && alias less=$PAGER
+    alias zless=$PAGER || PAGER='less'
 EDITOR='vim'
     autoload colors zsh/terminfo
     if [[ "$terminfo[colors]" -ge 8 ]]; then
