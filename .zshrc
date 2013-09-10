@@ -30,6 +30,8 @@ zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 zmodload -ap zsh/mapfile mapfile &>/dev/null
 
+#tests if we have a binary or no
+have() { which $1 &>/dev/null || return 1 }
 
 PATH="/opt/android-sdk/platform-tools:/opt/bro/bin:/opt/metasploit:/usr/lib/icecream/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
 TZ="America/New_York"
@@ -88,9 +90,6 @@ fi
   source ~/.zsh/git_prompt.zsh
   RPS1="$RPS1 $PR_YELLOW(%D{%m/%d %I:%M %P})$PR_NO_COLOR"
 #fi
-
-#tests if we have a binary or no
-have() { which $1 &>/dev/null || return 1 }
 
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
