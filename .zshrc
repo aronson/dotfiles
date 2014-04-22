@@ -242,3 +242,6 @@ export WINEPREFIX=~/.wine
 export WINEARCH=win32
 bindkey -e
 setopt AUTO_CD
+
+# source the syntax highlighting plugin if it exists
+[[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
