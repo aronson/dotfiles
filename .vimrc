@@ -79,3 +79,4 @@ set mouse=a         " Enable the use of the mouse.
 command W :execute ':silent w !sudo tee "%" > /dev/null' | :edit!
 filetype plugin indent on
 syntax on
+let g:EclimCompletionMethod = 'omnifunc' " for eclim and YouCompleteMe
