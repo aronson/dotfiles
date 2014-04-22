@@ -107,3 +107,4 @@ set background=dark " When set to "dark", Vim will try to use colors that look
 set mouse=a         " Enable the use of the mouse.
  
 command W :execute ':silent w !sudo tee "%" > /dev/null' | :edit!
+colorscheme molokai

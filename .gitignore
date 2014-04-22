@@ -19,3 +19,4 @@ doc/
 
 .project
 .vim/.netrwhist
+.zsh/cache
