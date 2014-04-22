@@ -1,8 +1,37 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" alternatively, pass a path where Vundle should install plugins
+" let path = '~/some/path/here'
+" call vundle#rc(path)
+"
+" let Vundle manage Vundle, required
+Plugin 'gmarik/vundle'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between here and filetype plugin indent on.
+" scripts on GitHub repos
+Plugin 'tpope/vim-fugitive'
+
+filetype plugin indent on
+syntax on
+let g:EclimCompletionMethod = 'omnifunc' " for eclim and YouCompleteMe
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Plugin commands are not allowed.
+" Put your stuff after this line
 " .vimrc
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
-
-" pathogen.vim import
-execute pathogen#infect()
 
 " For multi-byte character support (CJK support, for example):
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
@@ -77,6 +106,3 @@ set background=dark " When set to "dark", Vim will try to use colors that look
 set mouse=a         " Enable the use of the mouse.
  
 command W :execute ':silent w !sudo tee "%" > /dev/null' | :edit!
-filetype plugin indent on
-syntax on
-let g:EclimCompletionMethod = 'omnifunc' " for eclim and YouCompleteMe
