@@ -17,6 +17,7 @@ Plugin 'gmarik/vundle'
 " scripts on GitHub repos
 Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'elzr/vim-json'
 
 filetype plugin indent on
 syntax on
