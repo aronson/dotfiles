@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # next lets set some enviromental/shell pref stuff up
 setopt NOHUP            # let backgrounded commands continue
 setopt CSH_NULL_GLOB    # if any glob matches, use onlt those globs, but error on no globs
@@ -33,8 +40,6 @@ zmodload -ap zsh/mapfile mapfile &>/dev/null
 #tests if we have a binary or no
 have() { which $1 &>/dev/null || return 1 }
 
-PATH="/opt/android-sdk/platform-tools:/opt/bro/bin:/opt/metasploit:/usr/lib/icecream/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
-TZ="America/New_York"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
@@ -93,9 +98,6 @@ fi
 #fi
 
 #LANGUAGE=
-LC_ALL='en_US.UTF-8'
-LANG='en_US.UTF-8'
-LC_CTYPE=C
 export ICECC_VERSION=/opt/icecream/ChimmyChonga.tar.gz
 
 if [ $SSH_TTY ]; then
@@ -112,8 +114,6 @@ unsetopt ALL_EXPORT
 alias slrn="slrn -n"
 alias man='LC_ALL=C LANG=C man'
 alias f=finger
-alias ll='ls -al'
-alias ls='ls --color=auto '
 alias offlineimap-tty='offlineimap -u TTY.TTYUI'
 alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
@@ -245,3 +245,8 @@ setopt AUTO_CD
 
 # source the syntax highlighting plugin if it exists
 [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH=/opt/homebrew/bin:/opt/android-sdk/platform-tools:/opt/bro/bin:/opt/metasploit:/usr/lib/icecream/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
